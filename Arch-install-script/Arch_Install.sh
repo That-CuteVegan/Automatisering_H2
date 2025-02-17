@@ -137,12 +137,7 @@ until [[ "$Ready_Install" == YES || "$Ready_Install" == NO ]]; do
 			bootctl install
 			echo "Bootloader have been installed, time to write the boot script."
 			read
-			cat <<EOF "/boot/loader/entries/arch.conf"
-			title Arch
-			linux /vmlinuz-linux
-			initrd /initramfs-linux.img
-			
-			EOF
+			echo -e "title Arch\nlinux /vmliuz-linux\ninitrd /initramfs-linux.img" > /boot/loader/entries/arch.conf
 
 			source ./partitioning.sh
 
