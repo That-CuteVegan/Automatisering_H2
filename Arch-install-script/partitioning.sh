@@ -24,7 +24,7 @@ read swap_root
 	case $swap_root in
 		
 		# If the user wishes to start with swap partition it starts here.
-		*"swap"*)
+		"swap")
 			echo "You have chosen $swap_root"
 
 			until [[ "$Ready2" == "YES" ]]; do
@@ -45,7 +45,7 @@ read swap_root
 								case "$Ready2" in
 									
 									# If it is "Yes" aka right disc then the partitioning start, if "NO" or not a valid input the system loop will reboot and ask them again.
-									*"YES"*)
+									YES)
 										echo "You have chosen 'YES', partitioning will start now."
 										echo -e "o\nw" | fdisk /dev/$disk_for_partitioning
 
@@ -59,7 +59,7 @@ read swap_root
 										echo -e "n\np\n1\n\n+$partition_sizeG\nw" | fdisk /dev/$disk_for_partitioning
 
 										# Asks the user how big they want their root partition and asks them to write it in numbers coculated out from gigavites and not tera or peta bites.
-										until [[ "$partition_size2" -ge 0 && "$partition_size2" -le 9999999999
+										until [[ "$partition_size2" -ge 0 && "$partition_size2" -le 9999999999]]
 											echo "How big do you want the root partition? Please write only the number fx. 50G = 50, 20G = 20, and please coculate it in to gigabites and not tera or peta bites"
 											read partition_size2
 										done
@@ -114,7 +114,7 @@ read swap_root
 									;;
 
 									# If user says no that it is not the disc they wishes to partition it loops back to chosing what disc they want to partiton.
-									*"NO"*)
+									NO)
 										echo "You have chosen 'NO', please chose a new drive for partitioning."
 									;;
 
@@ -135,7 +135,7 @@ read swap_root
 		;;
 
 		# If the user wishes to start with root partition it starts here.
-		*"root"*)
+		"root")
 			
 			echo "You have chosen $swap_root"
 

@@ -6,7 +6,7 @@
 echo "Mirror.sh have booted, press enter to continue"
 read
 
-# Copies the mirrorlist and makes a backup of it.
+# Copies the mirrorlist to make a backup of it.
 echo "Copies mirrorlist as backup"
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 
