@@ -115,9 +115,41 @@ if ($ActiveDirectoryInstall)
         }
     }
 }
-    else
-    {
-        Write-Host "Installing Active Directory"
-        Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools
-        Write-Host "Active directory have now been installed"
-    }
+else
+{
+    Write-Host "Installing Active Directory"
+    Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools
+    Write-Host "Active directory have now been installed"
+
+    # Runs block to install a Domain on top of the Active Directory service.
+    Read-Host "Press Enter to continue"
+    Write-Host "There is no Domain installed."
+    Write-Host "Importing ADDS module."
+
+    # Imports the ADDS module to be able to install it later.
+    Import-Module ADDSDeployment
+    Write-Host "Module deployed."
+
+    # Asks for a domain name.
+    $DomainName = Read-Host "Enter a Domain name (e.g. example.com):"
+                
+    # Asks for a Domain Admin password
+    $DomainAdminPasswd = Read-Host "Enter a Password for the Domain Administrator:" -AsSecureString
+                
+    # Installs Active Directory Domain Controller (ADDC) with domain name and password promted for earlier.
+    Write-Host "Installing Domain controler."
+    Install-ADDSDomainController `
+        -DomainName $DomainName `
+        -DomainNetbiosName ($DomainName.split('.')[0]) `
+        -InstallDNS `
+        -SafeModeAdministratorPassword $DomainAdminPasswd `
+        -force
+
+    # Prompts the user to inform them that the server is getting restarted to finish the setup of Domain Controller and to re-run script to assign users to Active Directory.
+    Write-Host "Restarting computer to finish Active Directory setup."
+    Write-Host "Please run script again after reboot to assign users to Actiev Directory."
+    Read-Host "Press Enter to continue"
+                
+    # Restarts the server
+    Restart-Computer -Force
+}
