@@ -9,82 +9,113 @@
 # Look in to if active directory is already installed.
 $ActiveDirectoryInstall = (Get-WindowsFeature -Name AD-Domain_services).installed
 
-# Looks for a domain in case Active directory is already installed.
-$ActiveDirectoryDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
-
-# Locates the CSV file and gives it a variable to be called on
-$CSVFilePath = Join-Path -Path $PSScriptRoot -ChildPath "users.csv"
-
 # Imports users for Active Directory from a csv file to be used later
-$Users = Import-Csv -Path $CSVFilePath
+$Users = Import-Csv -Path "users.csv"
 
 # Checks ActiveDirectoryInstall variable for true or false then either installs it or skips this part.
 if ($ActiveDirectoryInstall)
+{
+    Write-Output "Active Directory is already installed"
+
+    # Looks for a domain in case Active directory is already installed.
+    $ActiveDirectoryDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
+
+    switch ($ActiveDirectoryDomain)
     {
-        Write-Output "Active Directory is already installed"
-
-        # Looks for a domain in case Active directory is already installed.
-        $ActiveDirectoryDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
-
-        switch ($ActiveDirectoryDomain)
+        {$_ -ne $null -and $_ -ne "" }
         {
-            {$_ -ne $null -and $_ -ne "" }
+            # Loops thru users in users.csv file to create users in Active Directory.
+            foreach ($user in $Users)
             {
-                # Loops thru users in users.csv file to create users in Active Directory.
-                foreach ($user in $Users)
+                $FirstName = $user.FirstName
+                $LastName = $user.LastName
+                $UserName = $user.Username
+                $Password = ConvertTo-SecureString $user.Password -AsPlainText -Force 
+                $OU = $user.OU
+
+                # Takes the first and last name's first letters to make initials for their email.
+                $FirstNameInitial = $User.Firstname.Substring(0,1)
+                $LastNameInitial = $User.Lastname.Substring(0,1)
+                $Initials = $FirstNameInitial + $LastNameInitial
+
+                # Takes the initials and Domain and makes the users email address.
+                $Email = "$Initials@$ActiveDirectoryDomain"
+
+                # Looks in to if the OU that the users are assigned to already excist, otherwise passes them to a code block that will create them.
+                $OUExists = Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$OU'" -ErrorAction SilentlyContinue
+                Write-Host "Checking for Orginasational units and creates the missing ones."
+
+                # Takes the value from earlier and either installs the OU or passes on it if it is already there.
+                if (-not $OUExists)
                 {
-                    $FirstName = $user.FirstName
-                    $LastName = $user.LastName
-                    $UserName = $user.Username
-                    $Password = ConvertTo-SecureString $user.Password -AsPlainText -Force 
-                    $OU = $user.OU
-
-                    # Takes the first and last name's first letters to make initials for their email.
-                    $FirstNameInitial = $User.Firstname.Substring(0,1)
-                    $LastNameInitial = $User.Lastname.Substring(0,1)
-                    $Initials = $FirstNameInitial + $LastNameInitial
-
-                    # Takes the initials and Domain and makes the users email address.
-                    $Email = $Initials@$ActiveDirectoryDomain
+                    New-ADOrganizationalUnit -Name $OU -Path $user.OU
+                    Write-Host "Created OU: $OU"
                 }
+
+                else 
+                {
+                    Write-Host "OU $OU already exists."
+                }
+
+                # Defines user properties
+                $PrincipalName = $Email
+
+                # Aigns the new uers to the Active directory.
+                New-ADUser  -SamAccountName $UserName `
+                    -UserPrincipalName $PrincipalName `
+                    -GivenName $FirstName `
+                    -Surname $LastName `
+                    -Name "$FirstName $LastName" `
+                    -DisplayName "$FirstName $LastName" `
+                    -EmailAddress $Email `
+                    -AccountPassword $Password `
+                    -Enabled $true `
+                    -PassThru `
+                    -Path $OU `
+                    -ChangePasswordAtLogon $true
+
+                    Write-host "Created user: $FirstName $LastName"
             }
 
-            # If there is no domain installed, it runs this code block to install it
-            default
-            {
-                Write-Output "There is no Domain installed."
-                Write-Output "Importing ADDS module."
+            Write-Host "All users have been created."
+        }
 
-                # Imports the ADDS module to be able to install it later.
-                Import-Module ADDSDeployment
-                Write-Output "Module deployed."
+        # If there is no domain installed, it runs this code block to install it
+        default
+        {
+            Write-Output "There is no Domain installed."
+            Write-Output "Importing ADDS module."
 
-                # Asks for a domain name.
-                $DomainName = Read-Host "Enter a Domain name (e.g. example.com):"
-                
-                # Asks for a Domain Admin password
-                $DomainAdminPasswd = Read-Host "Enter a Password for the Domain Administrator:" -AsSecureString
-                
-                # Installs Active Directory Domain Controller (ADDC) with domain name and password promted for earlier.
-                Write-Output "Installing Domain controler."
-                Install-ADDSDomainController´
-                    -DomainName $DomainName´
-                    -DomainNetbiosName ($DomainName.split('.')[0])´
-                    -InstallDNS´
-                    -SafeModeAdministratorPassword $DomainAdminPasswd´
-                    -force
+            # Imports the ADDS module to be able to install it later.
+            Import-Module ADDSDeployment
+            Write-Output "Module deployed."
 
-                # Prompts the user to inform them that the server is getting restarted to finish the setup of Domain Controller and to re-run script to assign users to Active Directory.
-                Write-Output "Restarting computer to finish Active Directory setup."
-                Write-Output "Please run script again after reboot to assign users to Actiev Directory."
-                Read-Host "Press Enter to continue"
+            # Asks for a domain name.
+            $DomainName = Read-Host "Enter a Domain name (e.g. example.com):"
                 
-                # Restarts the server
-                Restart-Computer -Force
-            }
+            # Asks for a Domain Admin password
+            $DomainAdminPasswd = Read-Host "Enter a Password for the Domain Administrator:" -AsSecureString
+                
+            # Installs Active Directory Domain Controller (ADDC) with domain name and password promted for earlier.
+            Write-Output "Installing Domain controler."
+            Install-ADDSDomainController `
+                -DomainName $DomainName `
+                -DomainNetbiosName ($DomainName.split('.')[0]) `
+                -InstallDNS `
+                -SafeModeAdministratorPassword $DomainAdminPasswd `
+                -force
+
+            # Prompts the user to inform them that the server is getting restarted to finish the setup of Domain Controller and to re-run script to assign users to Active Directory.
+            Write-Output "Restarting computer to finish Active Directory setup."
+            Write-Output "Please run script again after reboot to assign users to Actiev Directory."
+            Read-Host "Press Enter to continue"
+                
+            # Restarts the server
+            Restart-Computer -Force
         }
     }
-else
+}
+    else
     {
         Write-Output "Installing Active Directory"
         Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools
