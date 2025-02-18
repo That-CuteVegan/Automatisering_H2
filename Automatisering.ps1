@@ -12,6 +12,12 @@ $ActiveDirectoryInstall = (Get-WindowsFeature -Name AD-Domain_services).installe
 # Looks for a domain in case Active directory is already installed.
 $ActiveDirectoryDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
 
+# Locates the CSV file and gives it a variable to be called on
+$CSVFilePath = Join-Path -Path $PSScriptRoot -ChildPath "users.csv"
+
+# Imports users for Active Directory from a csv file to be used later
+$Users = Import-Csv -Path $CSVFilePath
+
 # Checks ActiveDirectoryInstall variable for true or false then either installs it or skips this part.
 if ($ActiveDirectoryInstall)
     {
@@ -24,7 +30,23 @@ if ($ActiveDirectoryInstall)
         {
             {$_ -ne $null -and $_ -ne "" }
             {
-                
+                # Loops thru users in users.csv file to create users in Active Directory.
+                foreach ($user in $Users)
+                {
+                    $FirstName = $user.FirstName
+                    $LastName = $user.LastName
+                    $UserName = $user.Username
+                    $Password = ConvertTo-SecureString $user.Password -AsPlainText -Force 
+                    $OU = $user.OU
+
+                    # Takes the first and last name's first letters to make initials for their email.
+                    $FirstNameInitial = $User.Firstname.Substring(0,1)
+                    $LastNameInitial = $User.Lastname.Substring(0,1)
+                    $Initials = $FirstNameInitial + $LastNameInitial
+
+                    # Takes the initials and Domain and makes the users email address.
+                    $Email = $Initials@$ActiveDirectoryDomain
+                }
             }
 
             # If there is no domain installed, it runs this code block to install it
