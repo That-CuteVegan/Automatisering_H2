@@ -15,7 +15,7 @@ $Users = Import-Csv -Path "users.csv"
 # Checks ActiveDirectoryInstall variable for true or false then either installs it or skips this part.
 if ($ActiveDirectoryInstall)
 {
-    Write-Output "Active Directory is already installed"
+    Write-Host "Active Directory is already installed"
 
     # Looks for a domain in case Active directory is already installed.
     $ActiveDirectoryDomain = (Get-WmiObject -Class Win32_ComputerSystem).Domain
@@ -83,12 +83,12 @@ if ($ActiveDirectoryInstall)
         # If there is no domain installed, it runs this code block to install it
         default
         {
-            Write-Output "There is no Domain installed."
-            Write-Output "Importing ADDS module."
+            Write-Host "There is no Domain installed."
+            Write-Host "Importing ADDS module."
 
             # Imports the ADDS module to be able to install it later.
             Import-Module ADDSDeployment
-            Write-Output "Module deployed."
+            Write-Host "Module deployed."
 
             # Asks for a domain name.
             $DomainName = Read-Host "Enter a Domain name (e.g. example.com):"
@@ -97,7 +97,7 @@ if ($ActiveDirectoryInstall)
             $DomainAdminPasswd = Read-Host "Enter a Password for the Domain Administrator:" -AsSecureString
                 
             # Installs Active Directory Domain Controller (ADDC) with domain name and password promted for earlier.
-            Write-Output "Installing Domain controler."
+            Write-Host "Installing Domain controler."
             Install-ADDSDomainController `
                 -DomainName $DomainName `
                 -DomainNetbiosName ($DomainName.split('.')[0]) `
@@ -106,8 +106,8 @@ if ($ActiveDirectoryInstall)
                 -force
 
             # Prompts the user to inform them that the server is getting restarted to finish the setup of Domain Controller and to re-run script to assign users to Active Directory.
-            Write-Output "Restarting computer to finish Active Directory setup."
-            Write-Output "Please run script again after reboot to assign users to Actiev Directory."
+            Write-Host "Restarting computer to finish Active Directory setup."
+            Write-Host "Please run script again after reboot to assign users to Actiev Directory."
             Read-Host "Press Enter to continue"
                 
             # Restarts the server
@@ -117,7 +117,7 @@ if ($ActiveDirectoryInstall)
 }
     else
     {
-        Write-Output "Installing Active Directory"
+        Write-Host "Installing Active Directory"
         Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools
-        Write-Output "Active directory have now been installed"
+        Write-Host "Active directory have now been installed"
     }
