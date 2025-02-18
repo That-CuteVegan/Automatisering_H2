@@ -32,6 +32,7 @@ if ($ActiveDirectoryInstall)
                 $UserName = $user.Username
                 $Password = ConvertTo-SecureString $user.Password -AsPlainText -Force 
                 $OU = $user.OU
+                $RandomNumber = Get-Random
 
                 # Takes the first and last name's first letters to make initials for their email.
                 $FirstNameInitial = $User.Firstname.Substring(0,1)
@@ -39,7 +40,7 @@ if ($ActiveDirectoryInstall)
                 $Initials = $FirstNameInitial + $LastNameInitial
 
                 # Takes the initials and Domain and makes the users email address.
-                $Email = "$Initials@$ActiveDirectoryDomain"
+                $Email = "$Initials$RandomNumber@$ActiveDirectoryDomain"
 
                 # Looks in to if the OU that the users are assigned to already excist, otherwise passes them to a code block that will create them.
                 $OUExists = Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$OU'" -ErrorAction SilentlyContinue
