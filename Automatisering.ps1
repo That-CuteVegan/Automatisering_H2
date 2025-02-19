@@ -88,7 +88,8 @@ if ($ActiveDirectoryInstall)
                     $TimeStamp = Get-Date -Format "dd-mm-yyyy HH:mm:ss"
 
                     # Crates error message.
-                    $ErrorMessage = "[$TimeStamp] Error: $($_.Exception.Message)`n[$TimeStamp] Stack Trace: $($_.ScriptStackTrace)"
+                    $ErrorMessage = "[$TimeStamp] Error:$($_.Exception.Message)`n[$TimeStamp] Stack Trace: $($_.ScriptStackTrace)"
+
 
                     # Appends the error message to a txt file
                     $ErrorMessage | Out-File -FilePath C:\Users\$currentUser\Desktop\UsersErrorLog.txt  -Append -Encoding UTF8
