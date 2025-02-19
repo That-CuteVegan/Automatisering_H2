@@ -13,7 +13,7 @@ Add-Type -TypeDefinition 'using System; using System.Runtime.InteropServices; pu
 $CurrentUser = $env:USERNAME
 
 # Look in to if active directory is already installed.
-$ActiveDirectoryInstall = (Get-CimInstance -Name AD-Domain_services).installed
+$ActiveDirectoryInstall = (Get-CimInstance -ClassName AD-Domain_services -Filter "AD-Domain-Services").installed
 
 # Imports users for Active Directory from a csv file to be used later.
 $Users = Import-Csv -Path "users.csv"
@@ -45,7 +45,7 @@ if ($ActiveDirectoryInstall)
     Write-Host "Active Directory is already installed"
 
     # Looks for a domain in case Active directory is already installed.
-    $ActiveDirectoryDomain = (Get-CimInstance -Class Win32_ComputerSystem).Domain
+    $ActiveDirectoryDomain = (Get-CimInstance -ClassName Win32_ComputerSystem).Domain
 
     switch ($ActiveDirectoryDomain)
     {
