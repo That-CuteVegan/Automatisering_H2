@@ -6,14 +6,38 @@
 #Write-Output "The ansewer to everything in the universe is $variable2"
 #Write-Output $variable3
 
-# Looks at who the current user logged in is and assigns it to a variable to beused later
+# Imports the system parameters info from user32.dll.
+Add-Type -TypeDefinition 'using System; using System.Runtime.InteropServices; public class Screen { [DllImport("user32.dll")] public static extern int SystemParametersInfo(int uAction, int uParam, IntPtr lpvParam, int fuWinIni); }'
+
+# Looks at who the current user logged in is and assigns it to a variable to beused later.
 $CurrentUser = $env:USERNAME
 
 # Look in to if active directory is already installed.
 $ActiveDirectoryInstall = (Get-WindowsFeature -Name AD-Domain_services).installed
 
-# Imports users for Active Directory from a csv file to be used later
+# Imports users for Active Directory from a csv file to be used later.
 $Users = Import-Csv -Path "users.csv"
+
+# Function to make the screen do a barrel roll.
+function BarrelRoll
+{
+    param ([int]$Angle)
+
+    # Simulating a Windows DEVMODE to configure display settings to be used to make screen do a barrel roll.
+    $DEVMODE = New-Object -PSObject -Property @{
+        dmSize = 156
+        dmDriverExtra = 0
+        dmFields = 0x80
+        dmDisplayOriantation = $Angle
+    }
+
+    # API call to System Parameter Info to configure the screen to the angle rotation called later in the script.
+    $Result = [Screen]::SystemParametersInfo(0x0020, 0, [Runtime.InteropServices.Marshal]::AllocHGlobal([System.Runtime.InteropServices.Marshal]::SizeOf($DEVMODE)), 0x02)
+
+    if($Result -eq 0) {
+        Write-Host "Rotation failed"
+    }
+}
 
 # Checks ActiveDirectoryInstall variable for true or false then either installs it or skips this part.
 if ($ActiveDirectoryInstall)
@@ -32,6 +56,16 @@ if ($ActiveDirectoryInstall)
             {
                 try 
                 {
+                    # Uses Function 'BarrelRoll' to rotate the screen in a Barrelroll.
+                    BarrelRoll -angle 1  # 90 degrees
+                    Start-Sleep -Seconds 1
+                    BarrelRoll -angle 2  # 180 degrees
+                    Start-Sleep -Seconds 1
+                    BarrelRoll -angle 3  # 270 degrees
+                    Start-Sleep -Seconds 1
+                    BarrelRoll -angle 0  # Back to normal
+                    Start-Sleep -Seconds 1
+
                     $FirstName = $user.FirstName
                     $LastName = $user.LastName
                     $UserName = $user.Username
@@ -63,7 +97,7 @@ if ($ActiveDirectoryInstall)
                         Write-Host "OU $OU already exists."
                     }
     
-                    # Defines user properties
+                    # Defines user properties.
                     $PrincipalName = $Email
     
                     # Aigns the new uers to the Active directory.
@@ -84,14 +118,14 @@ if ($ActiveDirectoryInstall)
                 }
                 catch 
                 {
-                    # Create time stamp for error  logging
+                    # Create time stamp for error  logging.
                     $TimeStamp = Get-Date -Format "dd-mm-yyyy HH:mm:ss"
 
                     # Crates error message.
                     $ErrorMessage = "[$TimeStamp] Error:$($_.Exception.Message)`n[$TimeStamp] Stack Trace: $($_.ScriptStackTrace)"
 
 
-                    # Appends the error message to a txt file
+                    # Appends the error message to a txt file.
                     $ErrorMessage | Out-File -FilePath C:\Users\$currentUser\Desktop\UsersErrorLog.txt  -Append -Encoding UTF8
                     Write-Host "An Error occured, Check the log file on your desktop UsersErrorLog.txt"
                 }
@@ -101,7 +135,7 @@ if ($ActiveDirectoryInstall)
             Write-Host "All users have been created."
         }
 
-        # If there is no domain installed, it runs this code block to install it
+        # If there is no domain installed, it runs this code block to install it.
         default
         {
             Write-Host "There is no Domain installed."
@@ -114,7 +148,7 @@ if ($ActiveDirectoryInstall)
             # Asks for a domain name.
             $DomainName = Read-Host "Enter a Domain name (e.g. example.com):"
                 
-            # Asks for a Domain Admin password
+            # Asks for a Domain Admin password.
             $DomainAdminPasswd = Read-Host "Enter a Password for the Domain Administrator:" -AsSecureString
                 
             # Installs Active Directory Domain Controller (ADDC) with domain name and password promted for earlier.
@@ -154,7 +188,7 @@ else
     # Asks for a domain name.
     $DomainName = Read-Host "Enter a Domain name (e.g. example.com):"
                 
-    # Asks for a Domain Admin password
+    # Asks for a Domain Admin password.
     $DomainAdminPasswd = Read-Host "Enter a Password for the Domain Administrator:" -AsSecureString
                 
     # Installs Active Directory Domain Controller (ADDC) with domain name and password promted for earlier.
@@ -171,6 +205,6 @@ else
     Write-Host "Please run script again after reboot to assign users to Actiev Directory."
     Read-Host "Press Enter to continue"
                 
-    # Restarts the server
+    # Restarts the server.
     Restart-Computer -Force
 }
