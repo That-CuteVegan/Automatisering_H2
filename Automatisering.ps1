@@ -6,6 +6,9 @@
 #Write-Output "The ansewer to everything in the universe is $variable2"
 #Write-Output $variable3
 
+# Looks at who the current user logged in is and assigns it to a variable to beused later
+$CurrentUser = $env:USERNAME
+
 # Look in to if active directory is already installed.
 $ActiveDirectoryInstall = (Get-WindowsFeature -Name AD-Domain_services).installed
 
@@ -27,55 +30,71 @@ if ($ActiveDirectoryInstall)
             # Loops thru users in users.csv file to create users in Active Directory.
             foreach ($user in $Users)
             {
-                $FirstName = $user.FirstName
-                $LastName = $user.LastName
-                $UserName = $user.Username
-                $Password = ConvertTo-SecureString $user.Password -AsPlainText -Force 
-                $OU = $user.OU
-                $RandomNumber = Get-Random
-
-                # Takes the first and last name's first letters to make initials for their email.
-                $FirstNameInitial = $User.Firstname.Substring(0,1)
-                $LastNameInitial = $User.Lastname.Substring(0,1)
-                $Initials = $FirstNameInitial + $LastNameInitial
-
-                # Takes the initials and Domain and makes the users email address.
-                $Email = "$Initials$RandomNumber@$ActiveDirectoryDomain"
-
-                # Looks in to if the OU that the users are assigned to already excist, otherwise passes them to a code block that will create them.
-                $OUExists = Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$OU'" -ErrorAction SilentlyContinue
-                Write-Host "Checking for Orginasational units and creates the missing ones."
-
-                # Takes the value from earlier and either installs the OU or passes on it if it is already there.
-                if (-not $OUExists)
+                try 
                 {
-                    New-ADOrganizationalUnit -Name $OU -Path $user.OU
-                    Write-Host "Created OU: $OU"
+                    $FirstName = $user.FirstName
+                    $LastName = $user.LastName
+                    $UserName = $user.Username
+                    $Password = ConvertTo-SecureString $user.Password -AsPlainText -Force 
+                    $OU = $user.OU
+                    $RandomNumber = Get-Random
+    
+                    # Takes the first and last name's first letters to make initials for their email.
+                    $FirstNameInitial = $User.Firstname.Substring(0,1)
+                    $LastNameInitial = $User.Lastname.Substring(0,1)
+                    $Initials = $FirstNameInitial + $LastNameInitial
+    
+                    # Takes the initials and Domain and makes the users email address.
+                    $Email = "$Initials$RandomNumber@$ActiveDirectoryDomain"
+    
+                    # Looks in to if the OU that the users are assigned to already excist, otherwise passes them to a code block that will create them.
+                    $OUExists = Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$OU'" -ErrorAction SilentlyContinue
+                    Write-Host "Checking for Orginasational units and creates the missing ones."
+    
+                    # Takes the value from earlier and either installs the OU or passes on it if it is already there.
+                    if (-not $OUExists)
+                    {
+                        New-ADOrganizationalUnit -Name $OU -Path $user.OU
+                        Write-Host "Created OU: $OU"
+                    }
+    
+                    else 
+                    {
+                        Write-Host "OU $OU already exists."
+                    }
+    
+                    # Defines user properties
+                    $PrincipalName = $Email
+    
+                    # Aigns the new uers to the Active directory.
+                    New-ADUser  -SamAccountName $UserName `
+                        -UserPrincipalName $PrincipalName `
+                        -GivenName $FirstName `
+                        -Surname $LastName `
+                        -Name "$FirstName $LastName" `
+                        -DisplayName "$FirstName $LastName" `
+                        -EmailAddress $Email `
+                        -AccountPassword $Password `
+                        -Enabled $true `
+                        -PassThru `
+                        -Path $OU `
+                        -ChangePasswordAtLogon $true
+    
+                        Write-host "Created user: $FirstName $LastName"
                 }
-
-                else 
+                catch 
                 {
-                    Write-Host "OU $OU already exists."
+                    # Create time stamp for error  logging
+                    $TimeStamp = Get-Date -Format "dd-mm-yyyy HH:mm:ss"
+
+                    # Crates error message.
+                    $ErrorMessage = "[$TimeStamp] Error: $($_.Exception.Message)`n[$TimeStamp] Stack Trace: $($_.ScriptStackTrace)"
+
+                    # Appends the error message to a txt file
+                    $ErrorMessage | Out-File -FilePath C:\Users\$currentUser\Desktop\UsersErrorLog.txt  -Append -Encoding UTF8
+                    Write-Host "An Error occured, Check the log file on your desktop UsersErrorLog.txt"
                 }
-
-                # Defines user properties
-                $PrincipalName = $Email
-
-                # Aigns the new uers to the Active directory.
-                New-ADUser  -SamAccountName $UserName `
-                    -UserPrincipalName $PrincipalName `
-                    -GivenName $FirstName `
-                    -Surname $LastName `
-                    -Name "$FirstName $LastName" `
-                    -DisplayName "$FirstName $LastName" `
-                    -EmailAddress $Email `
-                    -AccountPassword $Password `
-                    -Enabled $true `
-                    -PassThru `
-                    -Path $OU `
-                    -ChangePasswordAtLogon $true
-
-                    Write-host "Created user: $FirstName $LastName"
+               
             }
 
             Write-Host "All users have been created."
