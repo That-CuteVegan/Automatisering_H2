@@ -16,6 +16,11 @@ COMPOSITOR=""
 STACKING=""
 TILING=""
 DYNAMIC=""
+DESKTOPMANAGER=""
+CONSOLE=""
+GRAPHICAL=""
+DAEMONS=""
+NONE=""
 
 echo "Welcome to this installation script, we'll go over each potentially needed program and ask if you wish it installed."
 echo "Press Enter to continue"
@@ -356,7 +361,7 @@ case "$DESKTOPENVIORMENT" in
             ;;
 
             4)
-                echo "You have picked a Other Compositor, whcih one do you wish for?"
+                echo "You have picked an Other Compositor, whcih one do you wish for?"
                 echo "1 - Cage"
                 echo "2 - Phoc"
                 echo "3 - none"
@@ -401,8 +406,264 @@ case "$DESKTOPENVIORMENT" in
     4)
         echo "You have chosen no GUI, this means you have to reboot the script or install one manually if you wish for one"
     ;;
-    esac
+esac
 
 
-    echo "Now were thru all the Grafical interfaces, lets look in to some Display Managers."
-    
+echo "Now were thru all the Grafical interfaces, lets look in to some Display Managers."
+echo "Press Enter to continue."
+read
+clear
+
+echo "Which type of desktop manager do you wish to install?"
+echo "1 - Console"
+echo "2 - Graphical"
+echo "3 - Login Daemons"
+echo "4 - none"
+read DESKTOPMANAGER
+case "$DESKTOPMANAGER" in
+    1)
+        echo "You have picked a Console Desktop manager, whcih one do you wish for?"
+        echo "1 - Nodm"
+        echo "2 - Ly"
+        echo "3 - Emptty"
+        echo "4 - Lemurs"
+        echo "5 - CDM"
+        echo "6 - Console TDM"
+        echo "7 - Tbsm"
+        echo "8 - Loginx"
+        echo "9 - None"
+        echo "Number 5 thru 8 is AUR specific and will require you to run the script again and install them thru that,"
+        echo "or to manually install them, if 9 is picked no Desktop manager will be installed and script have to be ran again or manually install it."
+        read CONSOLE
+        case "$CONSOLE" in
+            1)
+                echo "You have picked Nodm Desktop manager, installing."
+                sudo pacman -S nodm --noconfirm
+                echo "Nodm have been installed."
+            ;;
+
+            2)
+                echo "You have picked Ly Desktop manager, installing."
+                sudo pacman -S ly --noconfirm
+                echo "Ly have been installed."
+            ;;
+
+            3)
+                echo "You have picked Emptty Desktop manager, installing."
+                sudo pacman -S emptty --noconfirm
+                echo "Emptty have been installed."
+            ;;
+
+            4)
+                echo "You have picked Lemurs Desktop manager, installing."
+                sudo pacman -S lemurs --noconfirm
+                echo "Lemurs have been installed."
+            ;;
+
+            5)
+                echo "You have picked CDM, CDM Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            6)
+                echo "You have picked Console TDM, Console TDM Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            7)
+                echo "You have picked Tbsm, Tbsm Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            8)
+                echo "You have picked Loginx, Loginx Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            9)
+                echo "You have picked None, you'll have to reload the script or manually install a Desktop manager."
+                echo "Press Enter to continue."
+                read 
+            ;;
+        esac
+    ;;
+
+    2)
+        echo "You have picked a Graphical Desktop manager, whcih one do you wish for?"
+        echo "1 - GDM"
+        echo "2 - LightDM"
+        echo "3 - LXDM"
+        echo "4 - SDDM"
+        echo "5 - Slim"
+        echo "6 - XDM"
+        echo "7 - Entrance"
+        echo "8 - None"
+        echo "Number 7 is AUR specific and will require you to run the script again and install them thru that,"
+        echo "or to manually install them, if 8 is picked no Desktop manager will be installed and script have to be ran again or manually install it."
+        read GRAPHICAL
+        case "$GRAPHICAL" in
+            1)
+                echo "You have picked GDM Desktop manager, installing."
+                sudo pacman -S gdm3 --noconfirm
+                echo "GDM have been installed."
+            ;;
+
+            2)
+                echo "You have picked LightDM Desktop manager, installing."
+                sudo pacman -S lightdm --noconfirm
+                echo "LightDM have been installed."
+            ;;
+
+            3)
+                echo "You have picked LXDM Desktop manager, installing."
+                sudo pacman -S lxdm --noconfirm
+                echo "LXDM have been installed."
+            ;;
+
+            4)
+                echo "You have picked SDDM Desktop manager, installing."
+                sudo pacman -S sddm --noconfirm
+                echo "SDDM have been installed."
+            ;;
+
+            5)
+                echo "You have picked Slim Desktop manager, installing."
+                sudo pacman -S slim --noconfirm
+                echo "Slim have been installed."
+            ;;
+
+            6)
+                echo "You have picked XDM Desktop manager, installing."
+                sudo pacman -S xorg-xdm --noconfirm
+                echo "XDM have been installed."
+            ;;
+
+            7)
+                echo "You have picked Entrance, Entrance Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            8)
+                echo "You have picked None, you'll have to reload the script or manually install a Desktop manager."
+                echo "Press Enter to continue."
+                read 
+            ;;
+        esac
+    ;;
+
+    3)
+        echo "You have picked Login Daemons Desktop manager, as for Login Daemons there is only one known as Greeted,"
+        echo "Greeted have multiple daemons you can install, the standard one that it comes with is"
+        echo "greetd-agreety, since you can install others which one do you wish for?"
+        echo "If you dont wish to change, just pick None" 
+        echo "1 - Cosmic-greeter"
+        echo "2 - Tuigreet"
+        echo "3 - Nwg-hello"
+        echo "4 - Dlm"
+        echo "5 - Ddlm"
+        echo "6 - Gtkgreet"
+        echo "7 - ReGreet"
+        echo "8 - Wlgreet"
+        echo "9 - Qtgreet "
+        echo "10 - None"
+        echo "Number 4 thru 9 is AUR specific and will require you to run the script again and install them thru that,"
+        echo "or to manually install them, if 6 is picked no gui will be installed and script have to be ran again or manually install it."
+        read DAEMONS
+        case "$DAEMONS" in
+            1)
+                echo "You have picked Cosmic-greeter Desktop manager, installing."
+                sudo pacman -S greetd cosmic-greeter --noconfirm
+                echo "Cosmic-greeter have been installed."
+            ;;
+
+            2)
+                echo "You have picked Tuigreet Desktop manager, installing."
+                sudo pacman -S greetd greetd-tuigreet --noconfirm
+                echo "Tuigreet have been installed."
+            ;;
+
+            3)
+                echo "You have picked Nwg-hello Desktop manager, installing."
+                sudo pacman -S greetd nwg-hello --noconfirm
+                echo "Nwg-hello have been installed."
+            ;;
+
+            4)
+                echo "You have picked Dlm, Dlm Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            5)
+                echo "You have picked Ddlm, Ddlm Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            6)
+                echo "You have picked Gtkgreet, Gtkgreet Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            7)
+                echo "You have picked ReGreet, ReGreet Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            8)
+                echo "You have picked Wlgreet, Wlgreet Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            9)
+                echo "You have picked Qtgreet, Qtgreet Desktop manager cannot be installed with pacman and will need you to"
+                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
+                echo "ending script block, press Enter to continue."
+                read 
+            ;;
+
+            10)
+                echo "You have picked None, either you want the standard setting or not."
+                echo "1 - Standard setting"
+                echo "2 - None"
+                read NONE
+                case "$NONE" in
+                    1)
+                        echo "You have picked standard settings for Greetd."
+                        sudo pacman -S greetd --noconfirm
+                        echo "Greetd have been installed and have standard settings."
+                    ;;
+
+                    2)
+                    echo "You have picked None."
+                    echo "This means you'll have to set up a desktop manager manually or run the script again."
+                    echo "Press Enter to continue"
+                    read
+                    ;;
+                esac
+            ;;
+        esac
+    ;;
+
+    4)
+        echo "You have chosen no GUI, this means you have to reboot the script or install one manually if you wish for one"
+    ;;
+esac
