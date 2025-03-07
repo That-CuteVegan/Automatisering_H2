@@ -21,6 +21,12 @@ CONSOLE=""
 GRAPHICAL=""
 DAEMONS=""
 NONE=""
+STACKINGAUR=""
+TILINGAUR=""
+DYNAMICAUR=""
+CONSOLEAUR=""
+GRAPHICALAUR=""
+DAEMONSAUR=""
 
 echo "Welcome to this installation script, we'll go over each potentially needed program and ask if you wish it installed."
 echo "Press Enter to continue"
@@ -63,7 +69,7 @@ read CODE
 case "$CODE" in
     "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
         echo "Installing VS Code."
-        sudo pacman -S CODE --noconfirm
+        sudo pacman -S code --noconfirm
     ;;
 
     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -205,30 +211,74 @@ case "$DESKTOPENVIORMENT" in
 
                     6)
                         echo "You have picked Hikari, Hikari cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read STACKINGAUR
+                        case "$STACKINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     7)
                         echo "You have picked Liri Shell, Liri Shell cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read  
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read STACKINGAUR
+                        case "$STACKINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     8)
                         echo "You have picked Wayfire, Wayfire cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read STACKINGAUR
+                        case "$STACKINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     9)
                         echo "You have picked Wio, Wio cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read STACKINGAUR
+                        case "$STACKINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     10)
@@ -273,30 +323,74 @@ case "$DESKTOPENVIORMENT" in
 
                     4)
                         echo "You have picked Cagebreak, Cagebreak cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read TILINGAUR
+                        case "$TILINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     5)
                         echo "You have picked Miracle-wm, Miracle-wm cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read  
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read TILINGAUR
+                        case "$TILINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     6)
                         echo "You have picked SwayFx, SwayFx cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read TILINGAUR
+                        case "$TILINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     7)
                         echo "You have picked Velox, Velox cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read TILINGAUR
+                        case "$TILINGAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     8)
@@ -333,23 +427,56 @@ case "$DESKTOPENVIORMENT" in
 
                     3)
                         echo "You have picked Dwl, Dwl cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read  
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read DYNAMICAUR
+                        case "$DYNAMICAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     4)
                         echo "You have picked Japokwm, Japokwm cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read DYNAMICAUR
+                        case "$DYNAMICAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     5)
                         echo "You have picked Vivarium, Vivarium cannot be installed with pacman and will need you to"
-                        echo "reboot the script and chose to install AUR Helper and go thru that script porting for it."
-                        echo "ending script block, press Enter to continue."
-                        read 
+                        echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                        read DYNAMICAUR
+                        case "$DYNAMICAUR" in
+                         "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                            echo "You have chosen YES, Booting AUR_Helper script"
+                            ./AUR_Helper.sh
+                        ;;
+
+                        "NO" | "N" | "no" | "n" | "No" | "nO")
+                            echo "You have said no to booting AUR helper, continueing installation script."
+                            echo "Press Enter to continue"
+                            read
+                        ;;
+                        esac
                     ;;
 
                     6)
@@ -462,30 +589,74 @@ case "$DESKTOPMANAGER" in
 
             5)
                 echo "You have picked CDM, CDM Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read CONSOLEAUR
+                case "$CONSOLEAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             6)
                 echo "You have picked Console TDM, Console TDM Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read CONSOLEAUR
+                case "$CONSOLEAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac
             ;;
 
             7)
                 echo "You have picked Tbsm, Tbsm Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read CONSOLEAUR
+                case "$CONSOLEAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac
             ;;
 
             8)
                 echo "You have picked Loginx, Loginx Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read CONSOLEAUR
+                case "$CONSOLEAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             9)
@@ -548,9 +719,20 @@ case "$DESKTOPMANAGER" in
 
             7)
                 echo "You have picked Entrance, Entrance Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read GRAPHICALAUR
+                case "$GRAPHICALAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             8)
@@ -600,44 +782,110 @@ case "$DESKTOPMANAGER" in
 
             4)
                 echo "You have picked Dlm, Dlm Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read DAEMONSAUR
+                case "$DAEMONSAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac  
             ;;
 
             5)
                 echo "You have picked Ddlm, Ddlm Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read DAEMONSAUR
+                case "$DAEMONSAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             6)
                 echo "You have picked Gtkgreet, Gtkgreet Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read DAEMONSAUR
+                case "$DAEMONSAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             7)
                 echo "You have picked ReGreet, ReGreet Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read DAEMONSAUR
+                case "$DAEMONSAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             8)
                 echo "You have picked Wlgreet, Wlgreet Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read DAEMONSAUR
+                case "$DAEMONSAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             9)
                 echo "You have picked Qtgreet, Qtgreet Desktop manager cannot be installed with pacman and will need you to"
-                echo "reboot the script and chose to install AUR Helper and go thru that script portion for it."
-                echo "ending script block, press Enter to continue."
-                read 
+                echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
+                read DAEMONSAUR
+                case "$DAEMONSAUR" in
+                    "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
+                        echo "You have chosen YES, Booting AUR_Helper script"
+                        ./AUR_Helper.sh
+                    ;;
+
+                    "NO" | "N" | "no" | "n" | "No" | "nO")
+                        echo "You have said no to booting AUR helper, continueing installation script."
+                        echo "Press Enter to continue"
+                        read
+                    ;;
+                esac 
             ;;
 
             10)
