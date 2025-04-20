@@ -138,6 +138,10 @@ case "$AURHELP" in
     "YES" | "Y" | "yes" | "y" | "Yes" | "yEs" | "yeS" | "yES" | "YEs" | "YeS")
         echo "Booting AUR helper script."
         ./AUR_Helper.sh
+        echo "Exited AUR_Helper.sh"
+        echo "Welcome back to the main script."
+        echo "Press Enter to continue."
+        read
     ;;
 
     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -145,6 +149,7 @@ case "$AURHELP" in
     ;;
 esac
 
+clear
 echo "Now were thru browsers, lets look in to some desktop environments aka GUI."
 echo "Press Enter to continue."
 read
@@ -159,7 +164,7 @@ echo "3 - xwayland"
 echo "4 - none"
 read DESKTOPENVIORMENT
 case "$DESKTOPENVIORMENT" in
-    1)
+    "1" | "xorg" | "Xorg")
 
         # User have chosen to use Xorg and goes thru the installation of it.
         echo "Installing xorg"
@@ -177,7 +182,7 @@ case "$DESKTOPENVIORMENT" in
         echo "Number 3 means you wish to use xorg in its raw form with no Desktop enviorment."
         read DESKTOPENVIORMENTXORG
         case "$DESKTOPENVIORMENTXORG" in
-            1)
+            "1" | "DE" | "de" | "Desktop Environment" | "desktop Environment" | "Desktop environment" | "desktop environment")
 
                 # User have chosen to go with a Desktop Environment, goes thru a list of DE's that works with Xorg and asks which one they wishes to install.
                 clear
@@ -198,7 +203,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "If number 11 is chosen you are runing Xorg 'raw' and will have to manually install on top of it."
                 read desktopenviorment
                 case "$desktopenviorment" in
-                    1)
+                    "1" | "GNOME" | "gnome")
 
                         # User have chosen to install GNOME, block installs GNOME for user.
                         echo "You have chosen GNOME."
@@ -213,7 +218,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    2)
+                    "2" | "KDE Plasma" | "KDE plasma" | "kde Plasma" | "kde plasma")
 
                         # User have chosen to install KDE Plasma, block installs KDE Plasma for user.
                         echo "You have chosen KDE Plasma."
@@ -228,7 +233,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
                     
-                    3)
+                    "3" | "XFCE" | "xfce")
 
                         # User have chosen to install XFCE, block installs XFCE for user.
                         echo "You have chosen XFCE."
@@ -243,7 +248,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    4)
+                    "4" | "LXQt" | "lxqt")
 
                         # User have chosen to install LXQt, block installs LXQt for user.
                         echo "You have chosen LXQt."
@@ -258,7 +263,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    5)
+                    "5" | "Cinnamon" | "cinnamon")
 
                         # User have chosen to install Cinnamon, block installs Cinnamon for user.
                         echo "You have chosen Cinnamon."
@@ -273,7 +278,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    6)
+                    "6" | "MATE" | "mate")
 
                         # User have chosen to install MATE, block installs MATE for user.
                         echo "You have chosne MATE."
@@ -288,7 +293,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    7)
+                    "7" | "Budgie" | "budgie")
 
                         # User have chosen to install Budgie, block installs Budgie for user.
                         echo "You have chosen Budgie."
@@ -303,7 +308,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    8)
+                    "8" | "Deepin" | "deepin")
 
                         # User have chosen to install Deepin, block installs Deepin for user.
                         echo "You have chosen Deepin."
@@ -318,7 +323,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    9)
+                    "9" | "Pantheon" | "pantheon")
 
                         # User have chosen to install Pantheon, block installs Pantheon for user.
                         echo "You have chosen Pantheon."
@@ -333,7 +338,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    10)
+                    "10" | "LXDE" | "lxde")
 
                         # User have chosen to install LXDE, block installs LXDE for user.
                         echo "You have chosen LXDE."
@@ -348,7 +353,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    11)
+                    "11" | "None" | "none")
 
                         # User have chosen to install no DE on their system.
                         echo "You have chosen None."
@@ -361,7 +366,7 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
 
-            2)
+            "2" | "Window Manager" | "window manager" | "window Manager" | "Window manager")
 
                 # User have chosen to go with a Window Manager, goes thru a list of WM's that works with Xorg and asks which one they wishes to install.
                 clear
@@ -386,7 +391,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "16 - None"
                 read WINDOWMANAGER
                 case "$WINDOWMANAGER" in
-                    1)
+                    "1" | "i3" | "I3")
 
                         # User have chosen to install i3, block installs i3 for user.
                         echo "You have chosen i3."
@@ -401,7 +406,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    2)
+                    "2" | "i3-gaps" | "I3-gaps" | "i3-Gaps" | "I3-Gaps")
 
                         # User have chosen to install i3-gaps, block installs i3-gaps for user.
                         echo "You have chosen i3-gaps."
@@ -416,7 +421,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    3)
+                    "3" | "AwesomeWM" | "Awesomewm" | "awesomeWM" | "awesomewm")
 
                         # User have chosen to install AwsomeWM, block installs AwsomeWM for user.
                         echo "You have chosen AwsomeWM."
@@ -431,7 +436,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    4)
+                    "4" | "Bspwm" | "bspwm")
 
                         # User have chosen to install Bspwm, block installs Bspwm for user.
                         echo "You have chosen Bspwm."
@@ -446,7 +451,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    5)
+                    "5" | "Herbstluftwm" | "herbstluftwm")
 
                         # User have chosen to install Herbstluftwm, block installs Herbstluftwm for user.
                         echo "You have chosen Herbstluftwm."
@@ -461,7 +466,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    6)
+                    "6" | "Xmonad" | "xmonad")
 
                         # User have chosen to install Xmonad, block installs Xmonad for user.
                         echo "You have chosen Xmonad."
@@ -476,7 +481,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    7)
+                    "7" | "Dwm" | "dwm")
 
                         # User have chosen to install Dwm, block installs Dwm for user.
                         echo "You have chosen Dwm."
@@ -491,7 +496,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    8)
+                    "8" | "Ratpoison" | "ratpoison")
 
                         # User have chosen to install Ratpoison, block installs Ratpoison for user.
                         echo "You have chosen Ratpoison."
@@ -506,7 +511,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    9)
+                    "9" | "Dluxbox" | "dluxbox")
 
                         # User have chosen to install Fluxbox, block installs Fluxbox for user.
                         echo "You have chosen Fluxbox."
@@ -521,7 +526,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    10)
+                    "10" | "Enlightenment" | "enlightenment")
 
                         # User have chosen to install Enlightenment, block installs Enlightenment for user.
                         echo "You have chosen Enlightenment."
@@ -536,7 +541,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    11)
+                    "11" | "Openbox" | "openbox" | "OpenBox" | "openBox")
 
                         # User have chosen to install Openbox, block installs Openbox for user.
                         echo "You have chosen Openbox."
@@ -551,7 +556,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    12)
+                    "12" | "JWM" | "jwm")
 
                         # User have chosen to install JWM, block installs JWM for user.
                         echo "You have chosen JWM."
@@ -566,7 +571,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    13)
+                    "13" | "Matchbox" | "matchbox" | "MatchBox" | "matchBox")
 
                         # User have chosen to install Matchbox, block installs Matchbox for user.
                         echo "You have chosen Matchbox."
@@ -581,7 +586,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    14)
+                    "14" | "AfterStep" | "afterstep" | "afterStep" | "Afterstep")
 
                         # User have chosen to install AfterStep, block installs AfterStep for user.
                         echo "You have chosen AfterStep."
@@ -596,7 +601,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    15)
+                    "15" | "Fvwm" | "fvwm")
 
                         # User have chosen to install Fvwm, block installs Fvwm for user.
                         echo "You have chosen Fvwm."
@@ -611,7 +616,7 @@ case "$DESKTOPENVIORMENT" in
                         clear
                     ;;
 
-                    16)
+                    "16" | "None" | "none")
 
                         # User have chosen to install no Windown Manager.
                         echo "You have chosen None."
@@ -623,7 +628,7 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
 
-            3)
+            "3" | "None" | "none")
 
                 # User have chosen to install neither Desktop Environment or Window Manager.
                 clear
@@ -639,12 +644,12 @@ case "$DESKTOPENVIORMENT" in
         echo "Now that you have installed either a desktop environment or a winodw manager you will need a display manager."
         echo "If you have installed a desktop environment you wont need it."
         echo "what have you installed?"
-        echo "1 - Desktop environment"
-        echo "2 - Window manager"
+        echo "1 - Desktop Environment"
+        echo "2 - Window Manager"
         echo "3 - None"
         read DISPLAYMANAGER
         case "$DISPLAYMANAGER" in
-            1)
+            "1" | "Desktop Environment" | "DE" | "desktop environment" | "de" | "Desktop environment" | "De" | "desktop Environment" | "dE")
 
                 # User have specified they have installed a DE which is both a WM and a DM in one package.
                clear
@@ -655,7 +660,7 @@ case "$DESKTOPENVIORMENT" in
                read
             ;;
 
-            2)
+            "2" | "Window Manager" | "WM" | "window manager" | "wm" | "Window manager" | "Wm" | "window Manager" | "wM")
 
                 # User have specified they have installed a Window manager and therefore need a Display manager, block asks them if they want a grafical or other kind of DM.
                 echo "You have chosen Window Manager."
@@ -667,7 +672,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "4 - none"
                 read DESKTOPMANAGER
                 case "$DISPLAYMANAGER" in
-                    1)
+                    "1" | "Console" | "console")
 
                         # User have chosen Console Display Manager and the block asks the user wich one they wish to install.
                         echo "You have picked a Console Display Manager, whcih one do you wish for?"
@@ -684,7 +689,7 @@ case "$DESKTOPENVIORMENT" in
                         echo "or to manually install them, if 9 is picked no Desktop manager will be installed and script have to be ran again or manually install it."
                         read CONSOLE
                         case "$CONSOLE" in
-                            1)
+                            "1" | "Nodm" | "nodm")
 
                                 # User have chosen to install Nodm, block installs Nodm for user.
                                 echo "You have picked Nodm Display Manager."
@@ -697,7 +702,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            2)
+                            "2" | "Ly" | "ly" | "lY")
 
                                 # User have chosen to install Ly, block installs i3 for user.
                                 echo "You have picked Ly Display Manager."
@@ -710,7 +715,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            3)
+                            "3" | "Emptty" | "emptty")
 
                                 # User have chosen to install Emptty, block installs Emptty for user.
                                 echo "You have picked Emptty Display Manager."
@@ -723,7 +728,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            4)
+                            "4" | "Lemurs" | "lemurs")
 
                                 # User have chosen to install Lemurs, block installs Lemurs for user.
                                 echo "You have picked Lemurs Display Manager."
@@ -736,7 +741,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            5)
+                            "5" | "CDM" | "cdm")
 
                                 # User have chosen to install CMD, informs user that CMD require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked CDM, CDM Display Manager cannot be installed with pacman and will need you to"
@@ -748,6 +753,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -760,9 +769,9 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            6)
+                            "6" | "Console TDM" | "Console tdm" | "console TDM" | "console tdm" | "TDM" | "tdm")
 
-                                # User have chosen to install TDM, informs user that TDM require AUR helper and asks if they wishes to boot the script.
+                                # User have chosen to install Console TDM, informs user that Console TDM require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Console TDM, Console TDM Display Manager cannot be installed with pacman and will need you to"
                                 echo "install it with AUR-helper, do you wish to boot the script to do so? YES/NO"
                                 read CONSOLEAUR
@@ -772,6 +781,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -784,7 +797,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac
                             ;;
 
-                            7)
+                            "7" | "Tbsm" | "tbsm")
 
                                 # User have chosen to install Tbsm, informs user that Tbsm require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Tbsm, Tbsm Display Manager cannot be installed with pacman and will need you to"
@@ -796,6 +809,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -808,7 +825,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac
                             ;;
 
-                            8)
+                            "8" | "Loginx" | "loginx")
 
                                 # User have chosen to install Lognix, informs user that Lognix require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Loginx, Loginx Display Manager cannot be installed with pacman and will need you to"
@@ -820,6 +837,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -832,7 +853,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            9)
+                            "9" | "None" | "none")
 
                                 # User have chosen to install No Console Display Manager.
                                 echo "You have picked None, you'll have to reload the script or manually install a Display Manager."
@@ -842,7 +863,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    2)
+                    "2" | "Graphical" | "graphical")
 
                         # User have chosen Graphical Display Manager and the block asks the user wich one they wish to install.
                         echo "You have picked a Graphical Desktop manager, whcih one do you wish for?"
@@ -858,7 +879,7 @@ case "$DESKTOPENVIORMENT" in
                         echo "or to manually install them, if 8 is picked no Desktop manager will be installed and script have to be ran again or manually install it."
                         read GRAPHICAL
                         case "$GRAPHICAL" in
-                            1)
+                            "1" | "GDM" | "gdm")
 
                                 # User have chosen to install GDM, block installs GDM for user.
                                 echo "You have picked GDM Display Manager."
@@ -871,7 +892,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            2)
+                            "2" | "LightDM" | "lightDM" | "Lightdm" | "lightdm" | "LDM" | "ldm")
 
                                 # User have chosen to install LightDM, block installs LightDM for user.
                                 echo "You have picked LightDM Display Manager."
@@ -884,7 +905,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            3)
+                            "3" | "LXDM" | "lxdm")
 
                                 # User have chosen to install LXDM, block installs LXDM for user.
                                 echo "You have picked LXDM Display Manager."
@@ -897,7 +918,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            4)
+                            "4" | "SDDM" | "sddm")
 
                                 # User have chosen to install SDDM, block installs SDDM for user.
                                 echo "You have picked SDDM Display Manager."
@@ -910,7 +931,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            5)
+                            "5" | "Slim" | "slim")
 
                                 # User have chosen to install Slim, block installs GDM for user.
                                 echo "You have picked Slim Display Manager."
@@ -923,7 +944,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            6)
+                            "6" | "XDM" | "xdm")
 
                                 # User have chosen to install XDM, block installs XDM for user.
                                 echo "You have picked XDM Display Manager."
@@ -936,7 +957,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            7)
+                            "7" | "Entrance" | "entrance")
 
                                 # User have chosen to install Entrance, informs user that Entrance require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Entrance, Entrance Display Manager cannot be installed with pacman and will need you to"
@@ -948,6 +969,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -960,7 +985,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            8)
+                            "8" | "None" | "none")
 
                                 # User have chosen to install No Graphical Display Manager.
                                 echo "You have picked None, you'll have to reload the script or manually install a Desktop manager."
@@ -970,7 +995,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    3)
+                    "3" | "Login Daemons" | "login daemons" | "login Daemons" | "Login daemons" | "ld" | "LD")
 
                         # User have chosen Login Daemons Display Manager and the block asks the user wich style of Greeted they wish to install.
                         echo "You have picked Login Daemons Display Manager, as for Login Daemons there is only one known as Greeted,"
@@ -991,7 +1016,7 @@ case "$DESKTOPENVIORMENT" in
                         echo "or to manually install them, if 6 is picked no gui will be installed and script have to be ran again or manually install it."
                         read DAEMONS
                         case "$DAEMONS" in
-                            1)
+                            "1" | "Cosmic-greeter" | "cosmic-greeter" | "Cosmic-Greeter" | "cosmic-Greeter" | "CG" | "cg")
 
                                 # User have chosen to install Cosmic-greeter, block installs Cosmic-greeter for user.
                                 echo "You have picked Cosmic-greeter Display Manager theme."
@@ -1004,7 +1029,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            2)
+                            "2" | "Tuigreet" | "tuigreet")
 
                                 # User have chosen to install Tuigreet, block installs Tuigreet for user.
                                 echo "You have picked Tuigreet Display Manager theme."
@@ -1017,7 +1042,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            3)
+                            "3" | "Nwg-hello" | "nwg-hello" | "Nwg-Hello" | "nwg-Hello" | "NH" | "nh")
 
                                 # User have chosen to install Nwg-hello, block installs Nwg-hello for user.
                                 echo "You have picked Nwg-hello Display Manager theme."
@@ -1030,7 +1055,7 @@ case "$DESKTOPENVIORMENT" in
                                 read
                             ;;
 
-                            4)
+                            "4" | "Dlm" | "dlm" | "DLM")
 
                                 # User have chosen to install Dlm, informs user that Dlm require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Dlm, Dlm Desktop manager cannot be installed with pacman and will need you to"
@@ -1042,6 +1067,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1054,7 +1083,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac  
                             ;;
 
-                            5)
+                            "5" | "Ddlm" | "ddlm" | "DDLM")
 
                                 # User have chosen to install Ddlm, informs user that Ddlm require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Ddlm, Ddlm Desktop manager cannot be installed with pacman and will need you to"
@@ -1066,6 +1095,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1078,7 +1111,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            6)
+                            "6" | "Gtkgreed" | "gtkgreed")
 
                                 # User have chosen to install Gtkgreed, informs user that Gtkgreet require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Gtkgreet, Gtkgreet Desktop manager cannot be installed with pacman and will need you to"
@@ -1090,6 +1123,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1102,7 +1139,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            7)
+                            "7" | "ReGreet" | "Regreet" | "reGreet" | "regreet")
 
                                 # User have chosen to install ReGreet, informs user that ReGreet require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked ReGreet, ReGreet Desktop manager cannot be installed with pacman and will need you to"
@@ -1114,6 +1151,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1126,7 +1167,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            8)
+                            "8" | "Wlgreet" | "wlgreet")
 
                                 # User have chosen to install Wlgreet, informs user that Wlgreet require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Wlgreet, Wlgreet Desktop manager cannot be installed with pacman and will need you to"
@@ -1138,6 +1179,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1150,7 +1195,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            9)
+                            "9" | "Qtgreet" | "qtgreet")
 
                                 # User have chosen to install Qtgreet, informs user that Qtgreet require AUR helper and asks if they wishes to boot the script.
                                 echo "You have picked Qtgreet, Qtgreet Desktop manager cannot be installed with pacman and will need you to"
@@ -1162,6 +1207,10 @@ case "$DESKTOPENVIORMENT" in
                                         # User have said Yes to booting the AUR helper script.
                                         echo "You have chosen YES, Booting AUR_Helper script"
                                         ./AUR_Helper.sh
+                                        echo "Exited AUR_Helper.sh"
+                                        echo "Welcome back to the main script."
+                                        echo "Press Enter to continue."
+                                        read
                                     ;;
 
                                     "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1174,7 +1223,7 @@ case "$DESKTOPENVIORMENT" in
                                 esac 
                             ;;
 
-                            10)
+                            "10" | "None" | "none")
 
                                 # User have chosen to install no Greetd theme or to go with the standard one, this block determins that.
                                 echo "You have picked None, either you want the standard setting or not."
@@ -1182,7 +1231,7 @@ case "$DESKTOPENVIORMENT" in
                                 echo "2 - None"
                                 read NONE
                                 case "$NONE" in
-                                    1)
+                                    "1" | "Standard setting" | "standard setting" | "Standard Setting" | "standard Setting")
 
                                         # User have picked to go with the standard settings for Greetd, installs Greeted with no theme configurations
                                         echo "You have picked standard settings for Greetd."
@@ -1195,7 +1244,7 @@ case "$DESKTOPENVIORMENT" in
                                         read
                                     ;;
 
-                                    2)
+                                    "2" | "None" | "none")
 
                                         # User have chosen to install No Login Daemon Display Manager.
                                         echo "You have picked None."
@@ -1208,7 +1257,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    4)
+                    "4" | "None" | "none")
 
                         # User have chosen to install No grafical interface at all.
                         echo "You have chosen no GUI, this means you have to reboot the script or install one manually if you wish for one"
@@ -1216,7 +1265,7 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
 
-            3)
+            "3" | "None" | "none")
 
                 # User have specified they have installed neither Desktop Environment or Window Manager.
                 clear
@@ -1230,7 +1279,7 @@ case "$DESKTOPENVIORMENT" in
         esac
     ;;
 
-    2)
+    "2" | "wayland" | "Wayland")
 
         # User have chosen to install Wayland, Wayland uses Compositor's so block asking which type the user wishes to install.
         echo "Wayland needs a Compositor, which kind do you wish to use?"
@@ -1242,7 +1291,7 @@ case "$DESKTOPENVIORMENT" in
         echo "Number 5 also mean you dont wish to install any GUI and will have to do it manually."
         read COMPOSITOR
         case "$COMPOSITOR" in
-            1)
+            "1" | "Stacking" | "stacking")
 
                 # User have chosen a Stacking Compositor, block asks which one the user wishes to install.
                 echo "You have picked a Stacking Compositor, whcih one do you wish for?"
@@ -1260,7 +1309,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "or to manually install them, if 10 is picked no gui will be installed and script have to be ran again or manually install it."
                 read STACKING
                 case "$STACKING in
-                    1)
+                    "1" | "Enlightenment" | "enlightenment")
 
                         # User have chosen Enlightenment, block installs Enlightenment for user.
                         echo "You have picked Enlightenment, installing."
@@ -1270,7 +1319,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    2)
+                    "2" | "Kwin" |"kwin")
 
                         # User have chosen Kwin, block installs Kwin for user.
                         echo "You have picked Kwin, installing."
@@ -1280,7 +1329,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    3)
+                    "3" | "Labwc" | "labwc")
 
                         # User have chosen Labwc, block installs Labwc for user.
                         echo "You have picked Labwc, installing."
@@ -1290,7 +1339,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    4)
+                    "4" | "Mutter" | "mutter")
                     
                         # User have chosen Mutter, block installs Mutter for user.
                         echo "You have picked Mutter, installing."
@@ -1300,7 +1349,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    5)
+                    "5" | "Weston" | "weston")
 
                         # User have chosen Weston, block installs Weston for user.
                         echo "You have picked Weston, installing."
@@ -1310,7 +1359,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    6)
+                    "6" | "Hikari" | "hikari")
 
                         # User have chosen Hikari, block refers user to AUR helper to install Hikari for them.
                         echo "You have picked Hikari, Hikari cannot be installed with pacman and will need you to"
@@ -1322,6 +1371,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1334,7 +1387,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    7)
+                    "7" | "Liri Shell" | "liri shell" | "Liri shell" | "liri Shell" | "LS" | "ls")
 
                         # User have chosen Liri Shell, block refers user to AUR helper to install Liri Shell for them.
                         echo "You have picked Liri Shell, Liri Shell cannot be installed with pacman and will need you to"
@@ -1346,6 +1399,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1358,7 +1415,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    8)
+                    "8" | "Wayfire" | "wayfire")
 
                         # User have chosen Wayfire, block refers user to AUR helper to install Wayfire for them.
                         echo "You have picked Wayfire, Wayfire cannot be installed with pacman and will need you to"
@@ -1370,6 +1427,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1382,7 +1443,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    9)
+                    "9" | "Wio" | "wio")
 
                         # User have chosen Wio, block refers user to AUR helper to install Wio for them.
                         echo "You have picked Wio, Wio cannot be installed with pacman and will need you to"
@@ -1394,6 +1455,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1406,7 +1471,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    10)
+                    "10" | "None" | "none")
 
                         # User have chosen to install no Stacking Compositor.
                         echo "You have picked None, you'll have to reload the script or manually install a GUI."
@@ -1416,7 +1481,7 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
 
-            2)
+            "2" | "Tiling" | "tiling")
 
                 # User have chosen a Tiling Compositor, block asks which one the user wishes to install.
                 echo "You have picked a Tiling Compositor, whcih one do you wish for?"
@@ -1432,7 +1497,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "or to manually install them, if 8 is picked no gui will be installed and script have to be ran again or manually install it."
                 read TILING
                 case "$TILING" in
-                     1)
+                     "1" | "Niri" | "niri")
 
                         # User have chosen Niri, block installs Niri for user.
                         echo "You have picked Niri, installing."
@@ -1442,7 +1507,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    2)
+                    "2" | "Qtile" | "qtile")
 
                         # User have chosen Qtile, block installs Qtile for user.
                         echo "You have picked Qtile, installing."
@@ -1452,7 +1517,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    3)
+                    "3" | "Sway" | "sway")
 
                         # User have chosen Sway, block installs Sway for user.
                         echo "You have picked Sway, installing."
@@ -1462,7 +1527,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    4)
+                    "4" | "Cagebrak" | "cagebrak")
 
                         # User have chosen Cagebrak, block refers user to AUR helper to install Cagebrak for them.
                         echo "You have picked Cagebreak, Cagebreak cannot be installed with pacman and will need you to"
@@ -1474,6 +1539,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1486,7 +1555,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    5)
+                    "5" | "Miracle-wm" | "miracle-wm" | "Miracle-WM" | "miracle-WM")
 
                         # User have chosen Miracle-wm, block refers user to AUR helper to install Miracle-wm for them.
                         echo "You have picked Miracle-wm, Miracle-wm cannot be installed with pacman and will need you to"
@@ -1498,6 +1567,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1510,7 +1583,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    6)
+                    "6" | "SwayFx" | "swayfx" | "Swayfx" | "swayFx")
 
                         # User have chosen SwayFx, block refers user to AUR helper to install SwayFx for them.
                         echo "You have picked SwayFx, SwayFx cannot be installed with pacman and will need you to"
@@ -1522,6 +1595,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1534,7 +1611,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    7)
+                    "7" | "Velox" | "velox")
 
                         # User have chosen Velox, block refers user to AUR helper to install Velox for them.
                         echo "You have picked Velox, Velox cannot be installed with pacman and will need you to"
@@ -1546,6 +1623,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1558,7 +1639,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    8)
+                    "8" | "None" | "none")
 
                         # User have chosen to install no Tiling Compositor.
                         echo "You have picked None, you'll have to reload the script or manually install a GUI."
@@ -1568,7 +1649,7 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
                 
-            3)
+            "3" | "Dynamic" | "dynamic")
 
                 # User have chosen a Dynamic Compositor, block asks which one the user wishes to install.
                 echo "You have picked a Dynamic Compositor, whcih one do you wish for?"
@@ -1582,7 +1663,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "or to manually install them, if 6 is picked no gui will be installed and script have to be ran again or manually install it."
                 read DYNAMIC
                 case "$DYNAMIC" in
-                    1)
+                    "1" | "Hyprland" | "hyprland")
 
                         # User have chosen Hyprland, block installs Hyprland for user.
                         echo "You have picked Hyprland, installing."
@@ -1592,7 +1673,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    2)
+                    "2" | "River" | "river")
 
                         # User have chosen River, block installs River for user.
                         echo "You have picked River, installing."
@@ -1602,7 +1683,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    3)
+                    "3" | "Dwl" | "DWL" | "dwl")
 
                         # User have chosen Dwl, block refers user to AUR helper to install Dwl for them.
                         echo "You have picked Dwl, Dwl cannot be installed with pacman and will need you to"
@@ -1614,6 +1695,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1626,7 +1711,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    4)
+                    "4" | "Japokwm" | "japokwm")
 
                         # User have chosen Japokwm, block refers user to AUR helper to install Japokwm for them.
                         echo "You have picked Japokwm, Japokwm cannot be installed with pacman and will need you to"
@@ -1638,6 +1723,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1650,7 +1739,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    5)
+                    "5" | "Vivarium" | "vivarium")
 
                         # User have chosen Vivarium, block refers user to AUR helper to install Vivarium for them.
                         echo "You have picked Vivarium, Vivarium cannot be installed with pacman and will need you to"
@@ -1662,6 +1751,10 @@ case "$DESKTOPENVIORMENT" in
                             # User have chosen Yes to boot AUR helper script.
                             echo "You have chosen YES, Booting AUR_Helper script"
                             ./AUR_Helper.sh
+                            echo "Exited AUR_Helper.sh"
+                            echo "Welcome back to the main script."
+                            echo "Press Enter to continue."
+                            read
                         ;;
 
                         "NO" | "N" | "no" | "n" | "No" | "nO")
@@ -1674,7 +1767,7 @@ case "$DESKTOPENVIORMENT" in
                         esac
                     ;;
 
-                    6)
+                    "6" | "None" | "none")
 
                         # User have chosen to install no Dynamic Compositor.
                         echo "You have picked None, you'll have to reload the script or manually install a GUI."
@@ -1684,7 +1777,7 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
 
-            4)
+            "4" | "Other" | "other")
 
                 # User have chosen a Other Compositor, block asks which one the user wishes to install.
                 echo "You have picked an Other Compositor, whcih one do you wish for?"
@@ -1695,7 +1788,7 @@ case "$DESKTOPENVIORMENT" in
                 echo "or to manually install them, if 6 is picked no gui will be installed and script have to be ran again or manually install it."
                 read OTHER
                 case "$OTHER" in
-                    1)
+                    "1" | "Cage" | "cage")
 
                         # User have chosen Cage, block installs Cage for user.
                         echo "You have picked Cage, installing."
@@ -1705,7 +1798,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    2)
+                    "2" | "Phoc" | "phoc")
 
                         # User have chosen Phoc, block installs Phoc for user.
                         echo "You have picked Phoc, installing."
@@ -1715,7 +1808,7 @@ case "$DESKTOPENVIORMENT" in
                         read
                     ;;
 
-                    3)
+                    "3" | "None" | "none")
 
                         # User have chosen to install no Other Compositor.
                         echo "You have picked None, you'll have to reload the script or manually install a GUI."
@@ -1725,13 +1818,16 @@ case "$DESKTOPENVIORMENT" in
                 esac
             ;;
 
-            5)
+            "5" | "None" | "none")
+                # User have chosen to install no Compositor
                 echo "You have no Compositor and therefore will not have a GUI unless installed manually or script is rebooted."
+                echo "Press Enter to continue."
+                read
             ;;
         esac
     ;;
 
-    3)
+    "3" | "xwayland" | "Xwayland" | "XWayland" | "xWayland")
 
         # User have chosen to use xwayland and goes thru the installation of it.
         echo "Installing xwayland"
@@ -1741,7 +1837,7 @@ case "$DESKTOPENVIORMENT" in
         read
     ;;
 
-    4)
+    "4" | "None" | "none")
 
         # User have chosen not to have any GUI installed on their Arch install.
         echo "You have chosen no GUI, this means you have to reboot the script or install one manually if you wish for one"
